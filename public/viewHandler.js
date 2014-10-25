@@ -1,11 +1,21 @@
 var currentData = [];
+var farts = [new Audio('f1.mp3'), new Audio('f2.mp3'), new Audio('f3.mp3')];
 
 $(document).ready(function() {
 
     updateView();
 
     $('#input').bind('keypress', function(event) {
+
+        if (event.which != 13) {
+            var audio = farts[Math.floor(Math.random() * 3)];
+            audio.play();
+        }
+
         if (event.which == 13) {
+
+            var audio = new Audio('crunch.mp3');
+            audio.play();
 
             var inputString = $('#input').val();
 
