@@ -2,6 +2,8 @@ var currentData = [];
 
 $(document).ready(function() {
 
+    updateView();
+
     $('#input').bind('keypress', function(event) {
         if (event.which == 13) {
 
@@ -23,7 +25,7 @@ $(document).ready(function() {
                     GET();
                 }
 
-
+                updateView();
             } else {
                 alert("YOU IDIOT");
             }
@@ -87,8 +89,6 @@ function PUT(tag, message) { //used to replace the message value of a document
         'message': message
     }
 
-    console.log("TAG: " + tag);
-
     $.ajax({
         type: 'PUT',
         data: newDocument,
@@ -127,14 +127,15 @@ function DELETE(_id) { //used to delete a document by _id
 
 function updateView() {
 
+    var s = '';
+
     $.getJSON('http://localhost:8080/api/twits', function(data) {
 
         $.each(data, function() {
-            console.log(this.tag + ' ' + this.message);
+            s += ('<li>' + this.tag + ' ' + this.message + '</li>');
+
         });
-
-        console.log(data.length);
-
+        $('#ul').html(s);
     });
 
 
