@@ -94,7 +94,7 @@ function GET() {
         dataType: "JSON",
         async: false,
         url: baseURL + '/api/twits',
-        success: function(response) {
+        success: function(data) {
 
             alert(data.length);
 
