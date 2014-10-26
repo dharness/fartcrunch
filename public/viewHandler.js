@@ -91,7 +91,7 @@ function GET() {
 
     $.ajax({
         type: "GET",
-        dataType: "JSON"
+        dataType: "JSON",
         url: baseURL + '/api/twits',
         async: false,
         success: function(data) {
