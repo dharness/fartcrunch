@@ -98,9 +98,6 @@ function GET() {
             for (var i = 0; i < data.length - 10; i++) {
                 DELETE(data[i]._id);
             }
-        },
-        error: function() {
-            alert('blogna, eh?');
         }
 
     });
