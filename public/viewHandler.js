@@ -93,16 +93,12 @@ function GET() {
         type: "GET",
         dataType: "JSON",
         async: false,
-        url: baseURL + '/api/twits',
-        success: function(data) {
+        url: baseURL + '/api/twits'
+    }).done(function(response) {
+        alert(data.length);
 
-
-            alert(data.length);
-
-            for (var i = 0; i < data.length - 10; i++) {
-                DELETE(data[i]._id);
-            }
-
+        for (var i = 0; i < data.length - 10; i++) {
+            DELETE(data[i]._id);
         }
     });
 
