@@ -95,10 +95,6 @@ function GET() {
         dataType: "JSON",
         success: function(data) {
 
-            alert('lol');
-
-            alert(data.length);
-
             for (var i = 0; i < data.length - 10; i++) {
                 DELETE(data[i]._id);
             }
