@@ -90,7 +90,7 @@ function POST(tag, message) {
 function GET() {
 
     $.ajax({
-        url: '104.131.5.102/api/twits',
+        url: '/api/twits',
         async: false,
         success: function(data) {
 
