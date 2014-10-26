@@ -45,7 +45,7 @@ $(document).ready(function() {
 
                 updateView();
             } else {
-                alert("YOU IDIOT");
+                alertify.log("Listen bud, we only use # around here. \n Got it?");
             }
         }
 
@@ -150,7 +150,7 @@ function updateView() {
     $.getJSON('http://localhost:8080/api/twits', function(data) {
 
         $.each(data, function() {
-            s += ('<li>' + this.tag + ' ' + this.message + '</li>');
+            s += ("<li>" + this.tag + ' ' + this.message + '</li>');
 
         });
         $('#ul').html(s);
