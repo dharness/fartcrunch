@@ -95,6 +95,7 @@ function GET() {
         url: baseURL + '/api/twits',
         success: function(data) {
 
+            alert(data.length);
 
             for (var i = 0; i < data.length - 10; i++) {
                 console.log(data[i].tag);
