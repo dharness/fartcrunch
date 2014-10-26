@@ -17,6 +17,7 @@ var port = process.env.PORT || 80; // set our port
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/nodetest2'); // connect to our database
 var Twit = require('./app/models/twit');
+Twit.remove();
 
 // ROUTES FOR OUR API
 // =============================================================================
