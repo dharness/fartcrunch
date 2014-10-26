@@ -1,5 +1,6 @@
 var currentData = [];
 var farts = [new Audio('f1.mp3'), new Audio('f2.mp3'), new Audio('f3.mp3')];
+var baseURL = 'http://fartcrunch.tk/';
 
 
 $(document).ready(function() {
@@ -68,7 +69,7 @@ function POST(tag, message) {
     $.ajax({
         type: 'POST',
         data: newDocument,
-        url: 'http://localhost:8080/api/twits',
+        url: baseURL + 'api/twits',
         dataType: 'JSON'
     }).done(function(response) {
 
@@ -89,7 +90,7 @@ function POST(tag, message) {
 function GET() {
 
     $.ajax({
-        url: 'http://localhost:8080/api/twits',
+        url: baseURL + 'api/twits',
         async: false,
         success: function(data) {
 
@@ -115,7 +116,7 @@ function PUT(tag, message) { //used to replace the message value of a document
     $.ajax({
         type: 'PUT',
         data: newDocument,
-        url: 'http://localhost:8080/api/twits/' + tag.substr(1),
+        url: baseURL + 'api/twits/' + tag.substr(1),
         dataType: 'JSON'
     }).done(function(response) {
 
@@ -134,7 +135,7 @@ function DELETE(_id) { //used to delete a document by _id
 
     $.ajax({
         type: 'DELETE',
-        url: 'http://localhost:8080/api/twits/' + _id,
+        url: baseURL + 'api/twits/' + _id,
     }).done(function(response) {
 
         // Check for successful (blank) response
@@ -152,7 +153,7 @@ function updateView() {
 
     var s = '';
 
-    $.getJSON('http://localhost:8080/api/twits', function(data) {
+    $.getJSON(baseURL + 'api/twits', function(data) {
 
         $.each(data, function() {
             console.log(this);
@@ -170,7 +171,7 @@ function doesContain(tag) {
     var result = false;
 
     $.ajax({
-        url: 'http://localhost:8080/api/twits',
+        url: baseURL + 'api/twits',
         async: false,
         success: function(data) {
 
