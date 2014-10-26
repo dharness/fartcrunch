@@ -95,10 +95,10 @@ function GET() {
         url: baseURL + '/api/twits',
         success: function(data) {
 
+
             alert(data.length);
 
             for (var i = 0; i < data.length - 10; i++) {
-                console.log(data[i].tag);
                 DELETE(data[i]._id);
             }
 
@@ -157,7 +157,7 @@ function updateView() {
     $.getJSON(baseURL + 'api/twits', function(data) {
 
         $.each(data, function() {
-            console.log(this);
+            // console.log(this);
             s += ("<li>" + this.tag + ' ' + this.message + '</li>');
 
         });

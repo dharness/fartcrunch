@@ -67,9 +67,10 @@ router.route('/twits')
 // get all the twits (accessed at GET http://localhost:8080/api/twits)
 .get(function(req, res) {
     Twit.find(function(err, twits) {
-        if (err)
+        if (err) {
             res.send(err);
-
+        }
+        console.log(twits);
         res.json(twits);
     });
 });
