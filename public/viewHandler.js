@@ -93,16 +93,13 @@ function GET() {
         type: "GET",
         dataType: "JSON",
         url: baseURL + '/api/twits',
-        async: false,
         success: function(data) {
 
-            //if theres more than 10 elements, grab only the last 10
-            if (data.length > 10) {
 
-                for (var i = 0; i < data.length - 10; i++) {
-                    DELETE(data[i]._id);
-                }
+            for (var i = 0; i < data.length - 10; i++) {
+                DELETE(data[i]._id);
             }
+
         }
     });
 
