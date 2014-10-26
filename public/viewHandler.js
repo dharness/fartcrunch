@@ -19,6 +19,8 @@ $(document).ready(function() {
 
             var inputString = $('#input').val();
 
+            inputString = sanitizeString(inputString);
+
             if (inputString.charAt(0) === "#") {
 
                 //chop up our input
@@ -55,7 +57,7 @@ function POST(tag, message) {
     $.ajax({
         type: 'POST',
         data: newDocument,
-        url: 'http://104.131.5.102:8080/api/twits',
+        url: 'http://localhost:8080/api/twits',
         dataType: 'JSON'
     }).done(function(response) {
 
@@ -76,7 +78,7 @@ function POST(tag, message) {
 function GET() {
 
     $.ajax({
-        url: 'http://104.131.5.102:8080/api/twits',
+        url: 'http://localhost:8080/api/twits',
         async: false,
         success: function(data) {
 
@@ -102,7 +104,7 @@ function PUT(tag, message) { //used to replace the message value of a document
     $.ajax({
         type: 'PUT',
         data: newDocument,
-        url: 'http://104.131.5.102:8080/api/twits/' + tag.substr(1),
+        url: 'http://localhost:8080/api/twits/' + tag.substr(1),
         dataType: 'JSON'
     }).done(function(response) {
 
@@ -121,7 +123,7 @@ function DELETE(_id) { //used to delete a document by _id
 
     $.ajax({
         type: 'DELETE',
-        url: 'http://104.131.5.102:8080/api/twits/' + _id,
+        url: 'http://localhost:8080/api/twits/' + _id,
     }).done(function(response) {
 
         // Check for successful (blank) response
@@ -139,7 +141,7 @@ function updateView() {
 
     var s = '';
 
-    $.getJSON('http://104.131.5.102:8080/api/twits', function(data) {
+    $.getJSON('http://localhost:8080/api/twits', function(data) {
 
         $.each(data, function() {
             s += ('<li>' + this.tag + ' ' + this.message + '</li>');
@@ -156,7 +158,7 @@ function doesContain(tag) {
     var result = false;
 
     $.ajax({
-        url: 'http://104.131.5.102:8080/api/twits',
+        url: 'http://localhost:8080/api/twits',
         async: false,
         success: function(data) {
 
@@ -169,4 +171,9 @@ function doesContain(tag) {
     });
     return result;
 
+}
+
+function sanitizeString(str) {
+    str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+    return str.trim();
 }
