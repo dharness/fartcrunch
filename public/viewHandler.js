@@ -90,7 +90,7 @@ function GET() {
 
     $.ajax({
         type: "GET",
-        // async: false,
+        async: false,
         url: baseURL + 'api/twits',
         dataType: "JSON",
         success: function(data) {
@@ -98,6 +98,9 @@ function GET() {
             for (var i = 0; i < data.length - 10; i++) {
                 DELETE(data[i]._id);
             }
+        },
+        error: function() {
+            alert('blogna, eh?');
         }
 
     });
