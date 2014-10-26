@@ -1,6 +1,7 @@
 var currentData = [];
 var farts = [new Audio('f1.mp3'), new Audio('f2.mp3'), new Audio('f3.mp3')];
 
+
 $(document).ready(function() {
 
     updateView();
@@ -19,9 +20,14 @@ $(document).ready(function() {
 
             var inputString = $('#input').val();
 
-            inputString = sanitizeString(inputString);
+
+
 
             if (inputString.charAt(0) === "#") {
+
+                inputString = inputString.substr(1); //remove the first char
+                inputString = sanitizeString(inputString); //sanatize
+                inputString = '#' + inputString; //replace the #
 
                 //chop up our input
                 inputString = inputString.split(' '); //split into array by spaces
