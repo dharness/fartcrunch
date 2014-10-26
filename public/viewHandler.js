@@ -104,88 +104,89 @@ function GET() {
         }
 
     });
+}
 
-    function PUT(tag, message) { //used to replace the message value of a document
+function PUT(tag, message) { //used to replace the message value of a document
 
-        var newDocument = {
-            'tag': tag,
-            'message': message
+    var newDocument = {
+        'tag': tag,
+        'message': message
+    }
+
+    $.ajax({
+        type: 'PUT',
+        data: newDocument,
+        url: baseURL + 'api/twits/' + tag.substr(1),
+        dataType: 'JSON'
+    }).done(function(response) {
+
+        // Check for successful (blank) response
+        if (response.msg === '') {
+            $('#input').val('');
+        } else {
+            // If something goes wrong, alert the error message that our service returned
+            alert('Error: ' + response.msg);
         }
+    });
 
-        $.ajax({
-            type: 'PUT',
-            data: newDocument,
-            url: baseURL + 'api/twits/' + tag.substr(1),
-            dataType: 'JSON'
-        }).done(function(response) {
+}
 
-            // Check for successful (blank) response
-            if (response.msg === '') {
-                $('#input').val('');
-            } else {
-                // If something goes wrong, alert the error message that our service returned
-                alert('Error: ' + response.msg);
-            }
+function DELETE(_id) { //used to delete a document by _id
+
+    $.ajax({
+        type: 'DELETE',
+        url: baseURL + 'api/twits/' + _id,
+    }).done(function(response) {
+
+        // Check for successful (blank) response
+        if (response.msg === '') {
+
+        } else {
+
+            // If something goes wrong, alert the error message that our service returned
+            alert('Error: ' + response.msg);
+        }
+    });
+}
+
+function updateView() {
+
+    var s = '';
+
+    $.getJSON(baseURL + 'api/twits', function(data) {
+
+        $.each(data, function() {
+            // console.log(this);
+            s += ("<li>" + this.tag + ' ' + this.message + '</li>');
+
         });
+        $('#ul').html(s);
+    });
 
-    }
 
-    function DELETE(_id) { //used to delete a document by _id
+}
 
-        $.ajax({
-            type: 'DELETE',
-            url: baseURL + 'api/twits/' + _id,
-        }).done(function(response) {
+function doesContain(tag) {
 
-            // Check for successful (blank) response
-            if (response.msg === '') {
+    var result = false;
 
-            } else {
-
-                // If something goes wrong, alert the error message that our service returned
-                alert('Error: ' + response.msg);
-            }
-        });
-    }
-
-    function updateView() {
-
-        var s = '';
-
-        $.getJSON(baseURL + 'api/twits', function(data) {
+    $.ajax({
+        url: baseURL + 'api/twits',
+        async: false,
+        success: function(data) {
 
             $.each(data, function() {
-                // console.log(this);
-                s += ("<li>" + this.tag + ' ' + this.message + '</li>');
-
+                if (this.tag == tag) {
+                    result = true;
+                }
             });
-            $('#ul').html(s);
-        });
+        }
+    });
+    return result;
 
+}
 
-    }
-
-    function doesContain(tag) {
-
-        var result = false;
-
-        $.ajax({
-            url: baseURL + 'api/twits',
-            async: false,
-            success: function(data) {
-
-                $.each(data, function() {
-                    if (this.tag == tag) {
-                        result = true;
-                    }
-                });
-            }
-        });
-        return result;
-
-    }
-
-    function sanitizeString(str) {
-        str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
-        return str.trim();
-    }
+function sanitizeString(str) {
+    str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+    return str.trim();
+}
