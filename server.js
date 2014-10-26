@@ -70,7 +70,7 @@ router.route('/twits')
         if (err) {
             res.send(err);
         }
-        console.log(twits);
+
         res.json(twits);
     });
 });
