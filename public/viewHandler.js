@@ -1,6 +1,6 @@
 var currentData = [];
 var farts = [new Audio('f1.mp3'), new Audio('f2.mp3'), new Audio('f3.mp3')];
-var baseURL = 'http://fartcrunch.tk/';
+var baseURL = '104.131.5.102/';
 
 
 $(document).ready(function() {
