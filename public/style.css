@@ -1,0 +1,159 @@
+body, html {
+  padding: 0px;
+  margin: 0px;
+  border: 0px none;
+  width: 100%;
+  height: 100%;
+}
+
+body
+{
+	background: #090909;
+}
+
+body,input
+{
+	font-family: 'Oxygen';
+	line-height: 2em;
+	font-size: 11pt;
+}
+
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#header
+	{
+		position: relative;
+		background: #ddd url(../images/header.jpg) no-repeat center;
+		background-size: cover;
+		text-align: center;
+		padding: 10em 0em;
+	}
+
+	#logo
+	{
+		margin-bottom: 3em;
+	}
+
+	#logo h1
+	{
+		color: #FFF;
+		display: block;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		font-size: 4em;
+		font-weight: 900;
+		color: #323338;
+	}
+
+	#logo span
+	{
+		display: block;
+		padding-top: 1em;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		font-size: 1.2em;
+		color: #8e8588;
+	}			
+			
+
+
+/*********************************************************************************/
+/* Main                                                                          */
+/*********************************************************************************/
+
+	#middle
+	{
+		position: relative;
+		padding: 6em 0em;
+	}
+	
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+	
+	#footer
+	{
+		position: relative;
+		background: #121212;
+		color: rgba(255,255,255,.4);
+	}
+	
+	#footer header h2
+	{
+		color: #FFF;
+	}	
+
+
+
+
+
+	#input {
+		
+	}
+/*********************************************************************************/
+/* Input                                                                         */
+/*********************************************************************************/
+	
+	#input input[type="text"] {
+	    /*background: url(search-dark.png) no-repeat 10px 6px #444;*/
+	    border: 0 none;
+	    font: bold 12px Arial,Helvetica,Sans-serif;
+	    color: #777;
+	    width: 150px;
+	    padding: 6px 15px 6px 35px;
+	    -webkit-border-radius: 20px;
+	    -moz-border-radius: 20px;
+	    border-radius: 20px;
+	    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+	    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+	    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+	    -webkit-transition: all 0.7s ease 0s;
+	    -moz-transition: all 0.7s ease 0s;
+	    -o-transition: all 0.7s ease 0s;
+	    transition: all 0.7s ease 0s;
+	    }
+
+	#input
+	 input[type="text"]:focus {
+	    width: 200px;
+	    }
+
+/*********************************************************************************/
+/* List                                                                          */
+/*********************************************************************************/
+
+	#ul
+	{
+		position: relative;
+		margin: 0;
+		padding: 0;
+		background: #333;
+		color: rgba(255,255,255,.4);
+
+		width: 900px;
+		margin: 0 auto;
+		overflow: auto;
+		list-style-type: none;
+		float: left;
+		margin: 10px;
+		border: 5px solid #fff;
+	 
+		-webkit-transition: box-shadow 0.5s ease;
+		-moz-transition: box-shadow 0.5s ease;
+		-o-transition: box-shadow 0.5s ease;
+		-ms-transition: box-shadow 0.5s ease;
+		transition: box-shadow 0.5s ease
+
+
+	}
+
+
+
+
+
+
+

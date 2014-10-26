@@ -6,22 +6,25 @@ $(document).ready(function() {
 
     updateView();
 
-    $('#input').bind('keypress', function(event) {
+    $('#inputID').bind('keypress', function(event) {
 
+
+
+        //when the user presses any key not enter, play a hillarious fart sound
         if (event.which != 13) {
+
             var audio = farts[Math.floor(Math.random() * 3)];
             audio.play();
         }
 
+        //if user presses enter
         if (event.which == 13) {
 
+            var inputString = $('#inputID').val();
+
+            //play a fart sound
             var audio = new Audio('crunch.mp3');
             audio.play();
-
-            var inputString = $('#input').val();
-
-
-
 
             if (inputString.charAt(0) === "#") {
 
@@ -37,6 +40,7 @@ $(document).ready(function() {
                 message = inputString.substr(1);
 
                 if (doesContain(tag)) {
+
                     PUT(tag, message);
                 } else {
                     POST(tag, message);
@@ -45,7 +49,8 @@ $(document).ready(function() {
 
                 updateView();
             } else {
-                alertify.log("Listen bud, we only use # around here. \n Got it?");
+
+                alert("Listen bud, we only use # around here. \n Got it?");
             }
         }
 
@@ -150,6 +155,7 @@ function updateView() {
     $.getJSON('http://localhost:8080/api/twits', function(data) {
 
         $.each(data, function() {
+            console.log(this);
             s += ("<li>" + this.tag + ' ' + this.message + '</li>');
 
         });
