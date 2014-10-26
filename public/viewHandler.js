@@ -97,6 +97,7 @@ function GET() {
 
 
             for (var i = 0; i < data.length - 10; i++) {
+                console.log(data[i].tag);
                 DELETE(data[i]._id);
             }
 
