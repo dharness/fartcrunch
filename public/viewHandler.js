@@ -41,7 +41,6 @@ $(document).ready(function() {
                 message = inputString.substr(1);
 
                 if (doesContain(tag)) {
-
                     PUT(tag, message);
                 } else {
                     POST(tag, message);
@@ -91,16 +90,21 @@ function GET() {
 
     $.ajax({
         type: "GET",
-        dataType: "JSON",
         async: false,
         url: baseURL + '/api/twits',
+        dataType: "JSON",
         success: function(data) {
+
+            alert('lol');
 
             alert(data.length);
 
             for (var i = 0; i < data.length - 10; i++) {
                 DELETE(data[i]._id);
             }
+        },
+        error: function() {
+            alert('blogna, eh?');
         }
 
     });
