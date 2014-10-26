@@ -93,98 +93,99 @@ function GET() {
         type: "GET",
         dataType: "JSON",
         async: false,
-        url: baseURL + '/api/twits'
-    }).done(function(response) {
-        alert(data.length);
+        url: baseURL + '/api/twits',
+        success: function(response) {
 
-        for (var i = 0; i < data.length - 10; i++) {
-            DELETE(data[i]._id);
+            alert(data.length);
+
+            for (var i = 0; i < data.length - 10; i++) {
+                DELETE(data[i]._id);
+            }
         }
+
     });
 
-}
+    function PUT(tag, message) { //used to replace the message value of a document
 
-function PUT(tag, message) { //used to replace the message value of a document
+        var newDocument = {
+            'tag': tag,
+            'message': message
+        }
 
-    var newDocument = {
-        'tag': tag,
-        'message': message
+        $.ajax({
+            type: 'PUT',
+            data: newDocument,
+            url: baseURL + 'api/twits/' + tag.substr(1),
+            dataType: 'JSON'
+        }).done(function(response) {
+
+            // Check for successful (blank) response
+            if (response.msg === '') {
+                $('#input').val('');
+            } else {
+                // If something goes wrong, alert the error message that our service returned
+                alert('Error: ' + response.msg);
+            }
+        });
+
     }
 
-    $.ajax({
-        type: 'PUT',
-        data: newDocument,
-        url: baseURL + 'api/twits/' + tag.substr(1),
-        dataType: 'JSON'
-    }).done(function(response) {
+    function DELETE(_id) { //used to delete a document by _id
 
-        // Check for successful (blank) response
-        if (response.msg === '') {
-            $('#input').val('');
-        } else {
-            // If something goes wrong, alert the error message that our service returned
-            alert('Error: ' + response.msg);
-        }
-    });
+        $.ajax({
+            type: 'DELETE',
+            url: baseURL + 'api/twits/' + _id,
+        }).done(function(response) {
 
-}
+            // Check for successful (blank) response
+            if (response.msg === '') {
 
-function DELETE(_id) { //used to delete a document by _id
+            } else {
 
-    $.ajax({
-        type: 'DELETE',
-        url: baseURL + 'api/twits/' + _id,
-    }).done(function(response) {
-
-        // Check for successful (blank) response
-        if (response.msg === '') {
-
-        } else {
-
-            // If something goes wrong, alert the error message that our service returned
-            alert('Error: ' + response.msg);
-        }
-    });
-}
-
-function updateView() {
-
-    var s = '';
-
-    $.getJSON(baseURL + 'api/twits', function(data) {
-
-        $.each(data, function() {
-            // console.log(this);
-            s += ("<li>" + this.tag + ' ' + this.message + '</li>');
-
+                // If something goes wrong, alert the error message that our service returned
+                alert('Error: ' + response.msg);
+            }
         });
-        $('#ul').html(s);
-    });
+    }
 
+    function updateView() {
 
-}
+        var s = '';
 
-function doesContain(tag) {
-
-    var result = false;
-
-    $.ajax({
-        url: baseURL + 'api/twits',
-        async: false,
-        success: function(data) {
+        $.getJSON(baseURL + 'api/twits', function(data) {
 
             $.each(data, function() {
-                if (this.tag == tag) {
-                    result = true;
-                }
+                // console.log(this);
+                s += ("<li>" + this.tag + ' ' + this.message + '</li>');
+
             });
-        }
-    });
-    return result;
+            $('#ul').html(s);
+        });
 
-}
 
-function sanitizeString(str) {
-    str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
-    return str.trim();
-}
+    }
+
+    function doesContain(tag) {
+
+        var result = false;
+
+        $.ajax({
+            url: baseURL + 'api/twits',
+            async: false,
+            success: function(data) {
+
+                $.each(data, function() {
+                    if (this.tag == tag) {
+                        result = true;
+                    }
+                });
+            }
+        });
+        return result;
+
+    }
+
+    function sanitizeString(str) {
+        str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+        return str.trim();
+    }
