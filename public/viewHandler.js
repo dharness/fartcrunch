@@ -1,6 +1,6 @@
 var currentData = [];
 var farts = [new Audio('f1.mp3'), new Audio('f2.mp3'), new Audio('f3.mp3')];
-var baseURL = '104.131.5.102/';
+var baseURL = 'http://104.131.5.102/';
 
 
 $(document).ready(function() {
@@ -90,7 +90,9 @@ function POST(tag, message) {
 function GET() {
 
     $.ajax({
-        url: '/api/twits',
+        type: "GET",
+        dataType: "JSON"
+        url: baseURL + '/api/twits',
         async: false,
         success: function(data) {
 
