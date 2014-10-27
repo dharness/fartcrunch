@@ -155,9 +155,11 @@ function updateView() {
 
     $.getJSON(baseURL + 'api/twits', function(data) {
 
+        console.log(data);
+
         for (var i = 0; i < 10; i++) {
             // console.log(this);
-            s += ("<li>" + this.tag + ' ' + this.message + '</li>');
+            s += ("<li>" + data[i].tag + ' ' + data[i].message + '</li>');
 
         }
 
