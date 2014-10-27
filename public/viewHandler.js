@@ -157,9 +157,11 @@ function updateView() {
 
         for (var i = 0; i < 10; i++) {
             // console.log(this);
-            s += ("<li>" + data[i].tag + ' ' + data[i].message + '</li>');
+            s += ("<li>" + this.tag + ' ' + this.message + '</li>');
 
         }
+
+
         $('#ul').html(s);
     });
 
